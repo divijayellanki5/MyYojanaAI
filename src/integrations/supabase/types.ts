@@ -14,7 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          age: number | null
+          annual_income: number | null
+          area: string | null
+          category: string | null
+          created_at: string
+          full_name: string | null
+          gender: string | null
+          has_disability: boolean
+          id: string
+          interests: string[]
+          is_bpl: boolean
+          is_farmer: boolean
+          language: string
+          occupation: string | null
+          state: string | null
+          updated_at: string
+        }
+        Insert: {
+          age?: number | null
+          annual_income?: number | null
+          area?: string | null
+          category?: string | null
+          created_at?: string
+          full_name?: string | null
+          gender?: string | null
+          has_disability?: boolean
+          id: string
+          interests?: string[]
+          is_bpl?: boolean
+          is_farmer?: boolean
+          language?: string
+          occupation?: string | null
+          state?: string | null
+          updated_at?: string
+        }
+        Update: {
+          age?: number | null
+          annual_income?: number | null
+          area?: string | null
+          category?: string | null
+          created_at?: string
+          full_name?: string | null
+          gender?: string | null
+          has_disability?: boolean
+          id?: string
+          interests?: string[]
+          is_bpl?: boolean
+          is_farmer?: boolean
+          language?: string
+          occupation?: string | null
+          state?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      saved_schemes: {
+        Row: {
+          created_at: string
+          id: string
+          scheme_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          scheme_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          scheme_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
