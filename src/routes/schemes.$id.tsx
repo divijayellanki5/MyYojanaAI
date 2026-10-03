@@ -10,11 +10,11 @@ export const Route = createFileRoute("/schemes/$id")({
   loader: ({ params }) => {
     const scheme = getScheme(params.id);
     if (!scheme) throw notFound();
-    return { scheme };
+    return { id: scheme.id, name: scheme.name, summary: scheme.summary, benefit: scheme.benefit };
   },
   head: ({ loaderData }) => {
     if (!loaderData) return { meta: [{ title: "Scheme not found — MyYojanaAI" }, { name: "robots", content: "noindex" }] };
-    const s = loaderData.scheme;
+    const s = loaderData;
     return {
       meta: [
         { title: `${s.name} — MyYojanaAI` },
@@ -32,7 +32,8 @@ export const Route = createFileRoute("/schemes/$id")({
 });
 
 function SchemeDetail() {
-  const { scheme } = Route.useLoaderData();
+  const { id } = Route.useLoaderData();
+  const scheme = getScheme(id)!;
   const { user } = useSession();
   const { data: profile } = useProfile(user?.id);
   const { saved, toggle } = useSavedSchemes(user?.id);
