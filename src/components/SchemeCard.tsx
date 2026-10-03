@@ -13,7 +13,7 @@ export function EligibilityBadge({ e }: { e: Eligibility }) {
 
 export function SchemeCard({
   scheme, eligibility, saved, onToggleSave,
-}: { scheme: Scheme; eligibility?: Eligibility; saved?: boolean; onToggleSave?: () => void }) {
+}: { scheme: Scheme; eligibility?: Eligibility | undefined; saved?: boolean | undefined; onToggleSave?: (() => void) | undefined }) {
   return (
     <div className="flex flex-col rounded-lg border bg-card p-5 transition-shadow hover:shadow-md">
       <div className="flex items-start justify-between gap-3">
