@@ -1,14 +1,11 @@
-# Exact Screenshot
 
-Implement exactly the screenshot and nothing else
 
-This project was built with [Lovable](https://lovable.dev).
+
 
 **Live app**: https://myyojanaai.lovable.app
 
-## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/4121d431-194f-42a8-9f26-ce6d7963c751).
+
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
