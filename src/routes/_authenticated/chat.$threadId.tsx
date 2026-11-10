@@ -11,6 +11,14 @@ import { PromptInput, PromptInputFooter, PromptInputSubmit, PromptInputTextarea 
 import { Shimmer } from "@/components/ai-elements/shimmer";
 
 export const Route = createFileRoute("/_authenticated/chat/$threadId")({
+  head: () => ({ meta: [
+    { title: "Saved conversation — Ask Yojana Mitra" },
+    { name: "description", content: "Continue your saved conversation about government schemes and eligibility." },
+    { property: "og:title", content: "Saved conversation — Ask Yojana Mitra" },
+    { property: "og:description", content: "Continue your saved conversation about government schemes and eligibility." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   component: ThreadPage,
 });
 

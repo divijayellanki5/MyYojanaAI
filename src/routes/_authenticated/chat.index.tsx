@@ -3,6 +3,14 @@ import { Button } from "@/components/ui/button";
 import { useNewThread } from "./chat";
 
 export const Route = createFileRoute("/_authenticated/chat/")({
+  head: () => ({ meta: [
+    { title: "New conversation — Ask Yojana Mitra" },
+    { name: "description", content: "Ask questions about government scheme eligibility, benefits and applications." },
+    { property: "og:title", content: "New conversation — Ask Yojana Mitra" },
+    { property: "og:description", content: "Get answers about government scheme eligibility, benefits and applications." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   component: ChatHome,
 });
 

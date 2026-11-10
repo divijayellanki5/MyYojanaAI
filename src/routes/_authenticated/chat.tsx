@@ -9,7 +9,14 @@ import { useSession } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/chat")({
-  head: () => ({ meta: [{ title: "Ask Yojana Mitra — MyYojanaAI" }, { name: "description", content: "Chat about government schemes." }] }),
+  head: () => ({ meta: [
+    { title: "Ask Yojana Mitra — MyYojanaAI" },
+    { name: "description", content: "Ask Yojana Mitra questions about government schemes, eligibility, documents and applications." },
+    { property: "og:title", content: "Ask Yojana Mitra — MyYojanaAI" },
+    { property: "og:description", content: "Ask questions about government schemes, eligibility, documents and applications." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   component: ChatLayout,
 });
 
@@ -31,9 +38,13 @@ export function useNewThread() {
   return async () => {
     if (!user) return;
     const { data, error } = await supabase.from("chat_threads").insert({ user_id: user.id }).select("id").single();
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     await qc.invalidateQueries({ queryKey: ["threads"] });
     navigate({ to: "/chat/$threadId", params: { threadId: data.id } });
+    return;
   };
 }
 
@@ -46,9 +57,13 @@ function ChatLayout() {
 
   async function remove(id: string) {
     const { error } = await supabase.from("chat_threads").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     await qc.invalidateQueries({ queryKey: ["threads"] });
     if (params.threadId === id) navigate({ to: "/chat" });
+    return;
   }
 
   return (

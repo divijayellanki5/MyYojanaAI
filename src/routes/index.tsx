@@ -11,6 +11,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Discover loans, subsidies, insurance and pensions you qualify for, with clear eligibility checks and application steps." },
       { property: "og:title", content: "MyYojanaAI — Find government schemes that fit you" },
       { property: "og:description", content: "Discover loans, subsidies, insurance and pensions you qualify for." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Landing,
@@ -33,6 +35,7 @@ function Landing() {
         <Logo />
         <div className="flex gap-2">
           <Button asChild variant="ghost" size="sm"><Link to="/schemes">Explore</Link></Button>
+          <Button asChild variant="ghost" size="sm"><Link to="/chat">Ask AI</Link></Button>
           <Button asChild size="sm"><Link to="/auth">Sign in</Link></Button>
         </div>
       </header>
