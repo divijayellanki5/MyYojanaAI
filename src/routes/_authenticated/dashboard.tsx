@@ -8,7 +8,14 @@ import { getScheme, evaluate, profileCompleteness, recommend } from "@/lib/schem
 import { useProfile, useSavedSchemes, useSession } from "@/lib/auth";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard — MyYojanaAI" }, { name: "description", content: "Your personalised scheme dashboard." }] }),
+  head: () => ({ meta: [
+    { title: "Your scheme dashboard — MyYojanaAI" },
+    { name: "description", content: "Review your scheme matches, profile progress and saved government schemes." },
+    { property: "og:title", content: "Your scheme dashboard — MyYojanaAI" },
+    { property: "og:description", content: "Review your scheme matches, profile progress and saved government schemes." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   component: Dashboard,
 });
 
