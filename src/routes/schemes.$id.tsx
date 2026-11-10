@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { CheckCircle2, XCircle, HelpCircle, ExternalLink, Bookmark, BookmarkCheck } from "lucide-react";
+import { CheckCircle2, XCircle, HelpCircle, ExternalLink, Bookmark, BookmarkCheck, MessageCircle } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { EligibilityBadge } from "@/components/SchemeCard";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,8 @@ export const Route = createFileRoute("/schemes/$id")({
         { name: "description", content: `${s.summary} Benefit: ${s.benefit}.` },
         { property: "og:title", content: `${s.name} — MyYojanaAI` },
         { property: "og:description", content: s.summary },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },
@@ -66,6 +68,7 @@ function SchemeDetail() {
           </ol>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild><a href={scheme.applyUrl} target="_blank" rel="noreferrer">Official portal <ExternalLink className="h-4 w-4" /></a></Button>
+            <Button asChild variant="outline"><Link to={user ? "/chat" : "/auth"}><MessageCircle className="h-4 w-4" />Ask AI</Link></Button>
             <Button asChild variant="outline"><Link to="/compare" search={{ ids: scheme.id }}>Compare</Link></Button>
             {user && (
               <Button variant="ghost" onClick={() => toggle.mutate(scheme.id)}>

@@ -5,7 +5,14 @@ import { recommend } from "@/lib/schemes";
 import { useProfile, useSession } from "@/lib/auth";
 
 export const Route = createFileRoute("/_authenticated/recommendations")({
-  head: () => ({ meta: [{ title: "Recommendations — MyYojanaAI" }, { name: "description", content: "Schemes ranked for your profile." }] }),
+  head: () => ({ meta: [
+    { title: "Your scheme recommendations — MyYojanaAI" },
+    { name: "description", content: "See government schemes ranked by how well their eligibility conditions match your profile." },
+    { property: "og:title", content: "Your scheme recommendations — MyYojanaAI" },
+    { property: "og:description", content: "Government schemes ranked by how well their eligibility conditions match your profile." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   component: Recommendations,
 });
 

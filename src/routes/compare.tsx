@@ -14,6 +14,8 @@ export const Route = createFileRoute("/compare")({
       { name: "description", content: "Compare government schemes side by side: benefits, eligibility and documents." },
       { property: "og:title", content: "Compare schemes — MyYojanaAI" },
       { property: "og:description", content: "Compare government schemes side by side." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Compare,

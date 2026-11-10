@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { MessageCircle, Search } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { SchemeCard } from "@/components/SchemeCard";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { CATEGORIES, SCHEMES, evaluate } from "@/lib/schemes";
 import { useProfile, useSavedSchemes, useSession } from "@/lib/auth";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,8 @@ export const Route = createFileRoute("/schemes/")({
       { name: "description", content: "Search and filter central government loans, subsidies, insurance, pension and agriculture schemes." },
       { property: "og:title", content: "Discover schemes — MyYojanaAI" },
       { property: "og:description", content: "Search and filter government financial schemes." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Discover,
@@ -47,6 +50,18 @@ function Discover() {
             {c ?? "All"}
           </button>
         ))}
+      </div>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-y py-4">
+        <div>
+          <h2 className="font-medium">Check your eligibility</h2>
+          <p className="text-sm text-muted-foreground">
+            {profile ? "Your scheme matches use the details in your profile." : "Complete your profile to see which schemes may fit you."}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button asChild variant="outline" size="sm"><Link to={user ? "/profile" : "/auth"}>Check eligibility</Link></Button>
+          <Button asChild size="sm"><Link to={user ? "/chat" : "/auth"}><MessageCircle className="h-4 w-4" />Ask AI</Link></Button>
+        </div>
       </div>
       <p className="mt-6 text-sm text-muted-foreground">{list.length} schemes</p>
       <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

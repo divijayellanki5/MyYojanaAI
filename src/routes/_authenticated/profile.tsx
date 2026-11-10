@@ -11,7 +11,14 @@ import { useProfile, useSaveProfile, useSession } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/profile")({
-  head: () => ({ meta: [{ title: "My profile — MyYojanaAI" }, { name: "description", content: "Your details for scheme matching." }] }),
+  head: () => ({ meta: [
+    { title: "Your profile — MyYojanaAI" },
+    { name: "description", content: "Manage your personal details and preferences for government scheme eligibility matching." },
+    { property: "og:title", content: "Your profile — MyYojanaAI" },
+    { property: "og:description", content: "Manage your details and preferences for government scheme eligibility matching." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   component: ProfilePage,
 });
 

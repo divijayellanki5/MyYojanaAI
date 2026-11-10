@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import { Home, Search, Star, Scale, User, LogOut } from "lucide-react";
+import { Home, Search, Star, Scale, User, LogOut, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ const NAV = [
   { to: "/dashboard", label: "Home", icon: Home },
   { to: "/schemes", label: "Discover", icon: Search },
   { to: "/recommendations", label: "Recommendations", icon: Star },
+  { to: "/chat", label: "Ask AI", icon: MessageCircle },
   { to: "/compare", label: "Compare", icon: Scale },
   { to: "/profile", label: "Profile", icon: User },
 ] as const;
@@ -27,6 +28,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const { user } = useSession();
   const navigate = useNavigate();
   const qc = useQueryClient();
+  const visibleNav = user ? NAV : NAV.filter((n) => n.to !== "/chat");
 
   async function signOut() {
     await qc.cancelQueries();
@@ -42,7 +44,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <Logo />
           <nav className="hidden items-center gap-1 md:flex">
-            {NAV.map((n) => (
+            {visibleNav.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
@@ -63,8 +65,8 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
       <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
-      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t bg-card md:hidden">
-        {NAV.map((n) => (
+      <nav className={`fixed inset-x-0 bottom-0 z-30 grid ${user ? "grid-cols-6" : "grid-cols-5"} border-t bg-card md:hidden`}>
+        {visibleNav.map((n) => (
           <Link key={n.to} to={n.to} className="flex flex-col items-center gap-1 py-2 text-[11px] text-muted-foreground" activeProps={{ className: "text-primary" }}>
             <n.icon className="h-5 w-5" />
             {n.label === "Recommendations" ? "For you" : n.label}

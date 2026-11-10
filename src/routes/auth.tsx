@@ -15,6 +15,8 @@ export const Route = createFileRoute("/auth")({
       { name: "description", content: "Sign in or create your MyYojanaAI account to get personalised scheme recommendations." },
       { property: "og:title", content: "Sign in — MyYojanaAI" },
       { property: "og:description", content: "Sign in to get personalised scheme recommendations." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: AuthPage,
